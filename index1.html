@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cake Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #b22222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .cakes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+        .cakes img {
+            width: 180px;
+            height: 130px;
+            border-radius: 8px;
+        }
+        .cakes div {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .order-box {
+            width: 400px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #b22222;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background: #b22222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #a21c1c;
+        }
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            background: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>DESSERT FOREST</header>
+    <div class="cakes">
+        <div>
+            <img src="truffle.png" alt="Chocolate Truffle Cake">
+            <p>Chocolate Truffle Cake – Rs. 700</p>
+        </div>
+        <div>
+            <img src="white forest.png" alt="White Forest Cake">
+            <p>White Forest Cake – Rs. 650</p>
+        </div>
+        <div>
+            <img src="red velvet.png" alt="Red Velvet Cake">
+            <p>Red Velvet Cake – Rs. 800</p>
+        </div>
+        <div>
+            <img src="cheese.png" alt="Cheese Cake">
+            <p>Cheese Cake – Rs. 900</p>
+        </div>
+    </div>
+    <div class="order-box">
+        <h2>Order Cake</h2>
+        <label>Chocolate Truffle Cake (Quantity)</label>
+        <input type="number" id="chocolatetruffle" min="0" value="0">
+        <label>White Forest Cake (Quantity)</label>
+        <input type="number" id="whiteforest" min="0" value="0">
+        <label>Red Velvet Cake (Quantity)</label>
+        <input type="number" id="redvelvet" min="0" value="0">
+        <label>Cheese Cake (Quantity)</label>
+        <input type="number" id="cheese" min="0" value="0">
+        <button id="placeOrder">Place Order</button>
+        <div id="output"></div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#placeOrder").click(function () {
+                let chocolatetruffle = parseInt($("#chocolatetruffle").val()) || 0;
+                let whiteforest = parseInt($("#whiteforest").val()) || 0;
+                let redvelvet = parseInt($("#redvelvet").val()) || 0;
+                let cheese = parseInt($("#cheese").val()) || 0;
+
+                let total = (chocolatetruffle * 700) +
+                            (whiteforest * 650) +
+                            (redvelvet * 800) +
+                            (cheese * 900);
+
+                if (total > 0) {
+                    $("#output").html(
+                        `<div class='result'>🍰 Purchase Order Bill!! <br> ✅ Total Price: Rs. ${total}</div>`
+                    );
+                } else {
+                    $("#output").html(
+                        `<div class='result' style="background:red;">⚠️ Please order at least 1 cake.</div>`
+                    );
+                }
+            });
+        });
+    </script>
+</body>
+</html>
